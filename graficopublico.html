@@ -1,0 +1,46 @@
+<div class="container pt-5">
+<div class="row justify-content-center">
+    <div class="col">
+    </div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.dom.min.js"></script>
+<script>
+var data;
+var n;
+function preload() {
+  data = loadTable('https://raw.githubusercontent.com/comachuca/data/master/promediopublico.csv','csv', 'header');
+}
+function setup() {
+  console.log(data);
+  console.log(data.getRowCount() + ' son las filas en la tabla');
+  console.log(data.getColumnCount() + ' son las columnas en la tabla');
+  var canvas = createCanvas(windowWidth, windowHeight);
+  canvas.position(0,0);
+  canvas.style('z-index','-1');
+  noStroke();
+  fill(0,150);
+  textAlign(CENTER);
+  textStyle(BOLD);  
+  beginShape();
+  vertex(0,height)
+    for (var a = 0; a < data.getRowCount(); a++) {
+    var PRO = data.get(a, 2);
+    var posX = (windowWidth/(data.getRowCount()+1))*(a+1);
+    var posY = map(PRO, 0, 105917, (windowHeight-50), 100);
+    vertex(posX,posY);
+      var CAMP = data.get(a, 0);
+      textSize(11);
+      text(CAMP + '\n•',posX,posY-10);
+      text(PRO + '\n•',posX,posY-1);
+  }
+  vertex(width,height);
+  endShape(CLOSE);
+}
+</script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

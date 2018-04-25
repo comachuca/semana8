@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Creative - Start Bootstrap Theme</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/creative.min.css" rel="stylesheet">
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">EL HINCHA CRUZADO</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about">PROMEDIO</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#services">PÚBLICO</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#portfolio">JUGADORES</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="masthead text-center text-white d-flex">
+      <div class="container my-auto">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <h1 class="text-uppercase">
+              <strong>EL HINCHA CRUZADO EN GRÁFICOS</strong>
+            </h1>
+            <hr>
+          </div>
+          <div class="col-lg-8 mx-auto">
+            <p class="text-faded mb-5">Cuando la pasión puede medirse</p>
+            <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">COMENZAR!</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="bg-primary" id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+
+            <h2 class="section-heading text-white">PROMEDIO DE PÚBLICO EN SAN CARLOS</h2>
+                    
+
+
+      <div class="container">
+         <div class="row">
+            <div class="col-12">
+               <div id="here" class="my-4"></div>
+            </div>
+          </div>
+      </div>
+
+<!-- COMIENZA PRIMER GRAFICO --> 
+      <script src="https://d3js.org/d3.v5.min.js"></script>
+      <script>
+         var w = 980, f = 0.065, h = 30;
+         
+         d3.csv("https://raw.githubusercontent.com/comachuca/data/master/promediopublico.csv").then(function(data) {
+         
+           console.log(data);
+         
+           var viz = d3.select("#here")
+             .append("svg")
+             .attr("width", w)
+//la altura dependerá de la cantidad de datos que haya
+             .attr("height", h * data.length)
+             .style("background","#f05f40");
+         
+           var bar = viz.selectAll("g")
+             .data(data)
+             .enter()
+             .append("g")
+             .attr("transform", function(d, i) { return "translate(0," + i * h + ")"; });
+             
+             bar.append("rect")
+               .attr("width", function(d) { return d.PRO * f; })
+               .attr("height", h - 5);
+
+             
+             bar.append("text")
+               .attr("x", function(d) { return (d.PRO * f)+5; })
+               .attr("y", h / 2)
+               .text(function(d) { return d.CAMP; })
+               .attr("fill","#FFFFFF")
+               .attr("font-size","12")
+               .attr("font-weight","bold")
+             
+             bar.append("text")
+               .attr("x", function(d) { return (d.PRO * f)-10; })
+               .attr("y", h / 2)
+               .text(function(d) { return (d.PRO)  + " hinchas"; })
+               .attr("fill","#FFFFFF")
+               .attr("font-size","12")
+               .attr("text-anchor","end")
+         })
+      </script>
+
+
+<!-- ACÁ  TERMINA EL PRIMER GRÁFICO-->
+
+    <p class="text-faded mb-4">La hinchada de la UC se caracteriza por ser fiel a pesar de los resultados, el club deportivo más grande del país posee un estadio con capacidad para 20.000 personas, no obstante, sólo se venden 13.000 entradas por partido para evitar disturbios y desmanes. En este contexto es que les presentamos el promedio de público que ha asistido a San Carlos de Apoquindo en los últimos 10 campeonatos. Cabe destacar que 2018 pinta para bueno, con tan sólo 5 partidos en casa, ya se supera con creces a años anteriores, siendo superado sólo por el campeonato de Clasura 2015, donde Católica se ubicó en la cuarta posición.</p>
+
+
+
+
+
+            <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">CONTINUAR</a>
+
+
+
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading">PÚBLICO ASISTENTE A CADA CAMPEONATO</h2>
+            <p>Si es que antes te hablábamos del promedio, ahora te mostramos la cantidad exacta de hinchas que han asistido a alentar a la UC a San Carlos de Apoquindo en los últimos 10 campeonatos. (Profe, no pude colocar el gráfico de otra manera :( )</p>
+
+            <hr class="my-4">
+          </div>
+        </div>
+      </div>
+     
+<!-- ACÁ  COMIENZA EL SEGUNDO GRÁFICO-->
+
+<div class="container">
+         <div class="row">
+            <div class="col-12">
+               <div id="GRAFICO2" class="my-4"></div>
+
+               <iframe src="graficopublico.html" width="1100" border="0" height="600" align="center"></iframe>
+            </div>
+          </div>
+      </div>
+
+
+
+
+<!-- ACÁ  TERMINA EL SEGUNDO GRÁFICO-->
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-0" id="portfolio">
+      <div class="container-fluid p-0">
+        <div class="row no-gutters popup-gallery">
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="img/portfolio/fullsize/1.jpg">
+              <img class="img-fluid" src="img/portfolio/thumbnails/1.jpg" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Director Técnico
+                  </div>
+                  <div class="project-name">
+                    Beñat SAN JOSÉ
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="img/portfolio/fullsize/2.jpg">
+              <img class="img-fluid" src="img/portfolio/thumbnails/2.jpg" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Delantero
+                  </div>
+                  <div class="project-name">
+                    David LLANOS
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="img/portfolio/fullsize/3.jpg">
+              <img class="img-fluid" src="img/portfolio/thumbnails/3.jpg" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Volante
+                  </div>
+                  <div class="project-name">
+                    Diego BUONANOTTE
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="img/portfolio/fullsize/4.jpg">
+              <img class="img-fluid" src="img/portfolio/thumbnails/4.jpg" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Volante
+                  </div>
+                  <div class="project-name">
+                    Luciano AUED
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="img/portfolio/fullsize/5.jpg">
+              <img class="img-fluid" src="img/portfolio/thumbnails/5.jpg" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Arquero
+                  </div>
+                  <div class="project-name">
+                    Matías DITURO
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" href="img/portfolio/fullsize/6.jpg">
+              <img class="img-fluid" src="img/portfolio/thumbnails/6.jpg" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Defensa
+                  </div>
+                  <div class="project-name">
+                    Cristián ÁLVAREZ
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-dark text-white">
+      <div class="container text-center">
+<!-- TERCER GRAFICO -->       
+
+<h2 class="section-heading text-white">CANTIDAD DE HINCHAS POR EQUIPO</h2>
+  <p class="text-faded mb-4">Universidad Católica posee la tercera hinchada más numerosa del país. Un 8% del país es cruzado. </p>
+
+
+ <div class="container">
+         <div class="row">
+            <div class="col-12">
+               <div id="GRAFICO3" class="my-4"></div>
+            </div>
+          </div>
+      </div>
+
+
+<script>
+
+ var w = 980, q = 350, t = 0.4;
+
+   var data = [
+      {name: 'CC', count: 42, color: '#000000'},
+      {name: 'UCH', count: 21, color: '#1c1876'},
+      {name: 'UC', count: 8, color: '#1c8bbf'},
+      {name: 'OTROS', count: 29, color: '#a4a4a4'},
+      ];
+    console.log(data);
+    //crea el svg dentro del elemento de identidad "here"
+    var svg = d3.select("#GRAFICO3")
+    .append("svg")
+    //w y h son variables que están más arriba
+      .attr("width", w)
+      .attr("height", q)
+      .style("background","#212529");
+    //selecciona el grupo
+    var g = svg.selectAll("g")
+      .data(data)
+      .enter()
+      .append("g")  
+    //dentro del grupo, crea círculos para la data
+    g.append("circle")
+    // d,i son la cantidad de elementos y el i funciona como contador
+    // { return (i+1) * w/(data.length+1); una quinta parte del uno multiplicado por 1, por 2, por 2 (es para distribuir mejor las cosas / cantidad de datos + 1 divido en el ancho, multiplicado por la cantidad del dato más uno)
+      .attr("cx", function(d, i) { return (i+1) * w/(data.length+1); })
+      .attr("cy", function(d) { return q/2; })
+      .attr("r", function(d) { return d.count/t; })
+      .attr("fill",function(d) { return d.color; })
+    //dentro del mismo grupo, agregar texto para la data
+    g.append("text")
+    // la f está definida arriba y es 6000 (dividir para que no sea tan grande el círculo)
+      .attr("x", function(d, i) { return (i+1) * w/(data.length+1); })
+      .attr("y", function(d, i) { return (q/1.75)+d.count/t; })
+      .attr("fill","#FFFFFF")
+      .attr('text-anchor','middle')
+      .text(function(d) { return d.name; })
+    //dentro del mismo grupo, agrega otro texto para la data
+    g.append("text")
+      .attr("x", function(d, i) { return (i+1) * w/(data.length+1); })
+      .attr("y", function(d, i) { return (q/1.6)+d.count/t; })
+      .attr("fill","#FFFFFF")
+      .attr('text-anchor','middle')      
+      .text(function(d) { return "("+d.count+"%)"; })
+      .style("font-size","10px")
+    </script>
+
+
+<!-- FIN DEL TERCER GRAFICO -->
+
+
+
+
+
+
+      </div>
+    </section>
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/creative.min.js"></script>
+
+  </body>
+
+</html>
+
+
